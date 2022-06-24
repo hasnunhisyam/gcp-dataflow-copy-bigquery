@@ -1,0 +1,24 @@
+# [required] The GCP project id (not the number). You can find this in the GCP console.
+project: data-services-asia-dev
+
+# [required] The type of runner. One of:
+# - dataflow (runs on GCP)
+# - local (runs on local machine)
+runner: dataflow
+
+# The actual tables to copy. Options:
+#
+# [required] source: The source table in format [PROJECT]:[DATASET].[TABLE]
+# [required] target: The target table in format [PROJECT]:[DATASET].[TABLE]
+# [optional] numWorkers: The initial number of workers in the Dataflow cluster. Default is 1.
+# [optional] maxNumWorkers: The max number of workers in the Dataflow cluster. Default is 3.
+# [optional] workerMachineType: The type of the workers. Default is n1-standard-1.
+# [optional] zone: The zone where Dataflow cluster will spin up. Default is australia-southeast1-a.
+# [optional] detectSchema: Either true or false. Use this as a workaround for complex schemas. Default is true.
+# [optional] writeDisposition: Either truncate or append. Default is truncate.
+# [optional] targetDatasetLocation: If the target dataset in BigQuery does not exist, use this to specify the location.
+copies:
+- source: data-services-asia-dev:regional_web_funnel.hp_data
+  target: data-services-asia-dev:testing.hp_data
+  workerMachineType: n1-standard-2
+  writeDisposition: truncate
